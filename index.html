@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>林碳预评</title>
-<meta name="description" content="林碳预评——面向林农的遥感林业碳汇立项前预评估平台（比赛演示版）">
+<title>碳瞰</title>
+<meta name="description" content="碳瞰——基于卫星遥感的林业碳汇立项预评估平台（比赛演示版）">
 <style>
 /* ============================================================
-   林碳预评 · 看板版（选定方向：GNW 国家看板的机制 + 本项目自己的配色）
+   碳瞰 · 看板版（选定方向：GNW 国家看板的机制 + 本项目自己的配色）
    借的是机制：顶部通告条、方块标志、左栏滚动 + 右侧固定地图、
    导语句把数字加粗嵌在句子里、每张图自带来源行、导航用下划线标当前页。
    不借它的标志、品牌绿和组件细节。
@@ -197,7 +197,11 @@ td.r, th.r { text-align: right; white-space: nowrap; font-family: var(--f-num); 
 
 /* ---- 首页内容块 ---- */
 .hero { display: grid; gap: 18px; padding-block: 34px 22px; }
+/* 名字是首屏唯一的主角：字号拉到正文的四五倍，副标题退成一行灰字 */
+.hero h1 { font-size: clamp(54px, 7.6vw, 96px); font-weight: 800; letter-spacing: .04em; line-height: 1.02; }
+.hero .subtitle { font-size: clamp(14px, 1.5vw, 16.5px); color: var(--ink-2); font-weight: 400; letter-spacing: .01em; margin-top: -8px; }
 .hero h1 em { font-style: normal; color: var(--pine); font-weight: 700; }
+.lede .slogan { color: var(--pine); font-weight: 700; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; }
 .facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; border: 1px solid var(--rule); border-radius: var(--r); background: var(--rule); overflow: hidden; }
 @media (min-width: 1560px) { .facts { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
@@ -379,14 +383,14 @@ img.map { width: 100%; max-width: 760px; margin: 0 auto; display: block; height:
 </div>
 <header>
   <div class="wrap bar">
-    <a class="logo" href="#home" data-go="home" aria-label="林碳预评 首页">
+    <a class="logo" href="#home" data-go="home" aria-label="碳瞰 首页">
       <span class="mark">
         <svg viewBox="0 0 28 28" aria-hidden="true">
           <path d="M14 4 L20.5 14 H16.8 L21.5 20.5 H6.5 L11.2 14 H7.5 Z" fill="#fff"/>
           <rect x="13" y="20.5" width="2" height="3.8" fill="#fff" opacity=".7"/>
         </svg>
       </span>
-      <span class="cn"><span id="siteName">林碳预评</span><small>FOREST CARBON PRE-CHECK</small></span>
+      <span class="cn"><span id="siteName">碳瞰</span><small>FOREST CARBON PRE-CHECK</small></span>
     </a>
     <!-- 导航之后要改成按端进入：林农 / 林业站 / 关于我们。
          首页的「三个入口」区块已经按这三段写好，改导航时把 data-p 对应过去即可：
@@ -412,9 +416,9 @@ img.map { width: 100%; max-width: 760px; margin: 0 auto; display: block; height:
   <div class="board">
     <div class="board-main"><div class="inner">
     <div class="hero">
-      <div class="eyebrow">面向林农的遥感林业碳汇立项前预评估平台</div>
-      <h1 id="siteTitle">先算清，<em>再开发</em></h1>
-      <p class="lede">全国集体林地 <span class="n">25.68 亿亩</span>，涉及 <span class="n">1 亿多</span>农户，户均约 <span class="n">25 亩</span>。可一个碳汇项目首期的开发、审定、核查和样地要花 <span class="n">55～100 万元</span>，而新一轮林业 CCER 至今签发 <b>0 个</b>。</p>
+      <h1 id="siteTitle">碳瞰</h1>
+      <p class="subtitle">基于卫星遥感的林业碳汇立项预评估平台</p>
+      <p class="lede"><b class="slogan">先算清，再开发。</b>全国集体林地 <span class="n">25.68 亿亩</span>，涉及 <span class="n">1 亿多</span>农户，户均约 <span class="n">25 亩</span>。可一个碳汇项目首期的开发、审定、核查和样地要花 <span class="n">55～100 万元</span>，而新一轮林业 CCER 至今签发 <b>0 个</b>。</p>
       <p class="lead small">种下的树每年都在吸收二氧化碳，这部分碳汇可以卖钱。可正式申报要先花几十万元请人测算，小林户根本算不过账。我们用免费的卫星数据，在花钱之前先帮林农把账算清楚。</p>
       <div class="hero-actions">
         <button class="btn" type="button" data-go="demo">看一遍林农怎么用</button>
@@ -492,7 +496,7 @@ img.map { width: 100%; max-width: 760px; margin: 0 auto; display: block; height:
         <div class="phone" aria-label="林农手机端">
           <div class="screen">
             <div class="statusbar"><span>9:41</span><span class="notch"></span><span>5G</span></div>
-            <div class="appbar"><span class="t">林碳预评 · 林农版</span><div class="dots" id="fDots"></div></div>
+            <div class="appbar"><span class="t">碳瞰 · 林农版</span><div class="dots" id="fDots"></div></div>
             <div class="fbody" id="fStep"></div>
           </div>
         </div>
@@ -720,7 +724,7 @@ img.map { width: 100%; max-width: 760px; margin: 0 auto; display: block; height:
 </section>
 </main>
 
-<footer><div class="wrap">林碳预评 · 北京科技大学第二十八届“摇篮杯”创意竞赛作品 · 遥感估算仅供立项前参考，不构成交易依据 · 演示数据均已标注</div></footer>
+<footer><div class="wrap">碳瞰 · 北京科技大学第二十八届“摇篮杯”创意竞赛作品 · 遥感估算仅供立项前参考，不构成交易依据 · 演示数据均已标注</div></footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
