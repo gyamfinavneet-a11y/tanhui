@@ -391,6 +391,21 @@ img.map { width: 100%; max-width: 760px; margin: 0 auto; display: block; height:
 #nav { overflow-x:auto; scrollbar-width:thin; }
 @media(max-width:800px) { .pivot-grid { grid-template-columns:1fr; } .pivot-form { gap:12px; } }
 @media(max-width:420px) { .pivot-form { grid-template-columns:1fr; } .pivot-form .wide { grid-column:auto; } }
+/* 产品结构 V2：沿用原有色彩、按钮与页面，不改变计算模块。 */
+#assessmentNav[hidden] { display: none; }
+.assessment-nav { background: var(--surface); border-bottom: 1px solid var(--rule); }
+.assessment-inner { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 20px; padding-block: 14px; }
+.assessment-inner strong { font-size: 14px; }
+.assessment-links, .workbench-nav { display: flex; flex-wrap: wrap; gap: 8px; }
+.assessment-links .btn { padding: 7px 14px; font-size: 14px; }
+.assessment-links .btn.on { background: var(--pine-soft); border-color: var(--pine); }
+.assessment-inner p { flex-basis: 100%; margin: 0; }
+.workbench-nav { margin: 0 0 20px; }
+.workbench-heading { font-size: 18px; margin-bottom: 12px; }
+.workbench-group { margin-bottom: 20px; }
+#demoRegistration, #demoProgress, #demoCoordination { scroll-margin-top: calc(var(--hdr) + 85px); }
+@media (max-width: 820px) { .assessment-inner { gap: 10px; } .workbench-nav .btn { padding: 8px 10px; font-size: 13px; } }
+@media (max-width: 420px) { #nav { flex-wrap: wrap; } #nav button { padding: 9px 7px; font-size: 12px; } }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; } }
 
 </style>
@@ -417,12 +432,10 @@ img.map { width: 100%; max-width: 760px; margin: 0 auto; display: block; height:
     <!-- 当前主版本：村集体订阅；研究案例与功能演示分开。 -->
     <nav id="nav" aria-label="页面">
       <button type="button" data-p="home" class="on">首页</button>
-      <button type="button" data-p="direction">方向初筛</button>
-      <button type="button" data-p="negotiation">收益谈判</button>
+      <button type="button" data-p="direction" data-group="assessment">碳汇预评估</button>
       <button type="button" data-p="demo">村集体工作台</button>
-      <button type="button" data-p="calc">CCER测算</button>
-      <button type="button" data-p="case">崇礼案例</button>
-      <button type="button" data-p="about">方法与局限</button>
+      <button type="button" data-p="case">技术验证</button>
+      <button type="button" data-p="about">方法与依据</button>
     </nav>
     <div class="hbtns">
       <button class="iconbtn" type="button" id="themeBtn" title="切换深色 / 浅色" aria-label="切换深色或浅色">
@@ -431,6 +444,18 @@ img.map { width: 100%; max-width: 760px; margin: 0 auto; display: block; height:
     </div>
   </div>
 </header>
+
+<div id="assessmentNav" class="assessment-nav" role="navigation" aria-label="碳汇预评估二级导航" hidden>
+  <div class="wrap assessment-inner">
+    <strong>碳汇预评估</strong>
+    <div class="assessment-links">
+      <button class="btn ghost" type="button" data-go="direction">方向初筛</button>
+      <button class="btn ghost" type="button" data-go="calc">CCER测算</button>
+      <button class="btn ghost" type="button" data-go="negotiation">收益谈判</button>
+    </div>
+    <p class="small muted">方向初筛 → CCER测算（适用时）→ 收益谈判。地方碳普惠可直接进入收益谈判，手动填写相应情景。</p>
+  </div>
+</div>
 
 <main>
 <!-- ===================== 首页 ===================== -->
@@ -443,8 +468,8 @@ img.map { width: 100%; max-width: 760px; margin: 0 auto; display: block; height:
       <p class="lede"><b class="slogan">先算清，再开发。</b>林地过去是什么、现在有多少亩、适合走哪条碳汇路径？碳瞰帮助<span class="n">村集体经济组织</span>带着依据，与开发公司谈条件。</p>
       <p class="lead small">从历史信息追溯，到 CCER / 碳普惠资格初筛，再到收益区间和合同分成对照，让村里在聘请公司、打包林地之前，先有一本看得懂的账。村集体订阅使用，林业局在推广链路中协助政策宣传。</p>
       <div class="hero-actions">
-        <button class="btn" type="button" data-go="direction">判断适合哪条路</button>
-        <button class="btn ghost" type="button" data-go="negotiation">比较开发公司报价</button>
+        <button class="btn" type="button" data-go="direction">进入碳汇预评估</button>
+        <button class="btn ghost" type="button" data-go="demo">进入村集体工作台</button>
         <button class="btn ghost" type="button" data-go="case">数字怎么算出来的</button>
       </div>
     </div>
@@ -473,13 +498,13 @@ img.map { width: 100%; max-width: 760px; margin: 0 auto; display: block; height:
             <span class="who">村集体 · 立项前</span>
             <h3>先核对资格，再选方向</h3>
             <p class="muted small">林农不熟悉标准，村里也未必掌握全部地块底数。按地区、活动和材料逐项检查，把不清楚的地方列出来。</p>
-            <div class="hero-actions"><button class="btn" type="button" data-go="direction">开始方向初筛</button></div>
+            <div class="hero-actions"><button class="btn" type="button" data-go="direction">碳汇预评估 · 方向初筛</button></div>
           </div>
           <div class="panel plot entry">
             <span class="who">村集体 · 委托开发前</span>
             <h3>拿着一笔明白账谈分成</h3>
             <p class="muted small">把合同中的比例、计费基数和谁出成本写清楚，减少报价信息差。也保留村民报名、面积汇总和回访演示。</p>
-            <div class="hero-actions"><button class="btn ghost" type="button" data-go="negotiation">收益谈判</button><button class="btn ghost" type="button" data-go="demo">村集体工作台</button></div>
+            <div class="hero-actions"><button class="btn ghost" type="button" data-go="negotiation">碳汇预评估 · 收益谈判</button><button class="btn ghost" type="button" data-go="demo">村集体工作台</button></div>
           </div>
           <div class="panel plot entry">
             <span class="who">关于我们</span>
@@ -580,8 +605,14 @@ img.map { width: 100%; max-width: 760px; margin: 0 auto; display: block; height:
       <h1 style="font-size:clamp(24px,3.4vw,34px)">村集体先摸清亩数，再组织大家一起谈</h1>
       <div class="demo-note">演示数据：小组名、人名、户数、手机号均为虚构；请填写测试号码。登记只在当前页面联动，刷新即重置，不会发送给真实村集体。</div>
     </div>
+    <div class="workbench-nav" role="navigation" aria-label="村集体工作台功能分组">
+      <button class="btn ghost" type="button" data-work-target="demoRegistration">地块与村民登记</button>
+      <button class="btn ghost" type="button" data-work-target="demoProgress">报名与组织进度</button>
+      <button class="btn ghost" type="button" data-work-target="demoCoordination">组织协调</button>
+    </div>
     <div class="demo-grid">
-      <div class="phone-col">
+      <div class="phone-col" id="demoRegistration">
+        <h2 class="workbench-heading">地块与村民登记</h2>
         <div class="phone" aria-label="林农手机端">
           <div class="screen">
             <div class="statusbar"><span>9:41</span><span class="notch"></span><span>5G</span></div>
@@ -596,6 +627,8 @@ img.map { width: 100%; max-width: 760px; margin: 0 auto; display: block; height:
           <h2 style="font-size:19px">青岭村集体经济组织 · 地块登记</h2>
           <span class="tag s">虚构</span>
         </div>
+        <section class="stack-s workbench-group" id="demoProgress" aria-labelledby="progressHeading">
+        <h3 class="workbench-heading" id="progressHeading">报名与组织进度</h3>
         <div class="kpis" id="kpis"></div>
         <div class="prog">
           <div class="admin-top"><b>报名面积 · CCER假设下的示意回本线</b><span class="small muted num" id="progLabel"></span></div>
@@ -607,6 +640,9 @@ img.map { width: 100%; max-width: 760px; margin: 0 auto; display: block; height:
           <div class="map-wrap"><svg id="map" viewBox="0 0 560 300" width="100%" role="img" aria-label="各村报名示意图"></svg></div>
           <div class="legend"><span><span class="dot" style="background:var(--pine)"></span>愿意</span><span><span class="dot" style="background:var(--survey)"></span>还想了解</span><span><span class="dot" style="background:var(--alert)"></span>不愿意</span><span>圆越大，报名面积越大</span></div>
         </div>
+        </section>
+        <section class="stack-s workbench-group" id="demoCoordination" aria-labelledby="coordinationHeading">
+        <h3 class="workbench-heading" id="coordinationHeading">组织协调</h3>
         <div class="grid g2">
           <div class="stack-s">
             <h3>不愿意的原因</h3>
@@ -618,6 +654,7 @@ img.map { width: 100%; max-width: 760px; margin: 0 auto; display: block; height:
             <div class="tablewrap"><table id="calls"><thead><tr><th>村民</th><th>村</th><th>状态</th><th class="r">电话</th></tr></thead><tbody></tbody></table></div>
           </div>
         </div>
+        </section>
         <div><button class="btn ghost" type="button" id="resetDemo">重置演示数据</button></div>
       </div>
     </div>
@@ -898,13 +935,27 @@ const VERDICT = { good: "明显赚", bad: "明显亏", warn: "说不准" };
 /* ============ 导航 ============ */
 function show(page) {
   document.querySelectorAll("section.page").forEach(s => s.classList.toggle("on", s.id === "p-" + page));
-  document.querySelectorAll("#nav button").forEach(b => b.classList.toggle("on", b.dataset.p === page));
+  const isAssessment = ["direction", "calc", "negotiation"].includes(page);
+  document.querySelectorAll("#nav button").forEach(b => {
+    const active = b.dataset.group === "assessment" ? isAssessment : b.dataset.p === page;
+    b.classList.toggle("on", active);
+    if (active) b.setAttribute("aria-current", "page"); else b.removeAttribute("aria-current");
+  });
+  $("#assessmentNav").hidden = !isAssessment;
+  document.querySelectorAll("#assessmentNav [data-go]").forEach(b => {
+    const active = b.dataset.go === page;
+    b.classList.toggle("on", active);
+    if (active) b.setAttribute("aria-current", "page"); else b.removeAttribute("aria-current");
+  });
   if (location.hash !== "#" + page) history.replaceState(null, "", "#" + page);
   window.scrollTo(0, 0);
   if (page === "home") drawHero();
 }
 document.querySelectorAll("#nav button").forEach(b => b.onclick = () => show(b.dataset.p));
 document.querySelectorAll("[data-go]").forEach(b => b.onclick = e => { e.preventDefault(); show(b.dataset.go); });
+document.querySelectorAll("[data-work-target]").forEach(b => b.onclick = () => {
+  document.getElementById(b.dataset.workTarget).scrollIntoView({ behavior: "auto", block: "start" });
+});
 
 /* ============ 首页插画：等高线 + GEDI 足迹 + 样地 ============ */
 function drawHero() {
